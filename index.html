@@ -7,52 +7,31 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="HUMAM">
 <meta name="theme-color" content="#000000">
-
 <title>HUMAM</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='14' fill='%236b9eff' font-family='sans-serif' font-weight='bold'%3EH%3C/text%3E%3C/svg%3E">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#000;
-  --fg:#c8d0d8;
-  --dim:#4a5560;
-  --accent:#6b9eff;
-  --border:#2a323c;
-  --panel:#0a0c0e;
-  --red:#e05a5a;
-  --hover:#0c0e12;
+  --bg:#000;--fg:#c8d0d8;--dim:#4a5560;--accent:#6b9eff;
+  --border:#2a323c;--panel:#0a0c0e;--red:#e05a5a;--hover:#0c0e12;
 }
 html,body{height:100%;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;overflow:hidden}
 body{display:flex;flex-direction:column}
 
-/* LOGIN */
-#login{
-  position:fixed;inset:0;z-index:100;background:#000;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
-}
+#login{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
 #login.out{opacity:0;pointer-events:none;transition:opacity .35s}
 .logo{font-size:26px;font-weight:700;letter-spacing:6px}
 .logo b{color:var(--accent)}
 .login-box{border:1px solid var(--border);padding:28px 24px;width:min(320px,90vw);background:var(--panel);border-radius:6px}
 .login-box label{display:block;color:var(--dim);font-size:11px;margin-bottom:6px;letter-spacing:1px}
-.login-box input{
-  width:100%;background:#000;border:1px solid var(--border);color:var(--fg);
-  padding:12px;font-size:14px;margin-bottom:14px;outline:none;border-radius:4px;
-}
+.login-box input{width:100%;background:#000;border:1px solid var(--border);color:var(--fg);padding:12px;font-size:14px;margin-bottom:14px;outline:none;border-radius:4px}
 .login-box input:focus{border-color:var(--accent)}
-.btn{
-  width:100%;background:var(--accent);border:none;color:#000;
-  padding:13px;font-size:13px;font-weight:600;cursor:pointer;border-radius:4px;
-}
+.btn{width:100%;background:var(--accent);border:none;color:#000;padding:13px;font-size:13px;font-weight:600;cursor:pointer;border-radius:4px}
 .btn:active{opacity:.85}
 .err{color:var(--red);font-size:12px;margin-top:12px;display:none;text-align:center}
 .err.show{display:block}
 
-/* TOP */
-#top{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 14px;border-bottom:1px solid var(--border);background:var(--panel);flex:none;
-}
+#top{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--panel);flex:none}
 #top .brand{font-weight:700;letter-spacing:2px;font-size:13px}
 #top .brand b{color:var(--accent)}
 #status{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
@@ -61,51 +40,25 @@ body{display:flex;flex-direction:column}
 .dot.busy{background:#d4a017;animation:pulse .8s infinite}
 @keyframes pulse{50%{opacity:.3}}
 
-/* MAIN */
 #main{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-
-/* SEARCH */
-#searchbar{
-  display:flex;gap:8px;padding:12px 14px;border-bottom:1px solid var(--border);background:var(--panel);flex:none;
-}
-#q{
-  flex:1;background:#000;border:1px solid var(--border);color:var(--fg);
-  padding:11px 14px;font-size:15px;outline:none;border-radius:4px;
-}
+#searchbar{display:flex;gap:8px;padding:12px 14px;border-bottom:1px solid var(--border);background:var(--panel);flex:none}
+#q{flex:1;background:#000;border:1px solid var(--border);color:var(--fg);padding:11px 14px;font-size:15px;outline:none;border-radius:4px}
 #q:focus{border-color:var(--accent)}
 #q::placeholder{color:var(--dim)}
-.sbtn{
-  background:#000;border:1px solid var(--border);color:var(--fg);
-  padding:0 14px;font-size:12px;cursor:pointer;border-radius:4px;white-space:nowrap;
-}
+.sbtn{background:#000;border:1px solid var(--border);color:var(--fg);padding:0 14px;font-size:12px;cursor:pointer;border-radius:4px;white-space:nowrap}
 .sbtn:hover,.sbtn.active{border-color:var(--accent);color:var(--accent)}
 #file-input{display:none}
 
-/* FILTERS */
-#filters{
-  display:none;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);
-  background:var(--panel);flex-wrap:wrap;flex:none;
-}
+#filters{display:none;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--panel);flex-wrap:wrap;flex:none}
 #filters.show{display:flex}
-#filters select{
-  background:#000;border:1px solid var(--border);color:var(--fg);
-  padding:7px 10px;font-size:12px;outline:none;border-radius:4px;max-width:160px;
-}
+#filters select{background:#000;border:1px solid var(--border);color:var(--fg);padding:7px 10px;font-size:12px;outline:none;border-radius:4px;max-width:150px}
 #filters select:focus{border-color:var(--accent)}
 
-/* META */
-#meta{
-  padding:7px 14px;font-size:11px;color:var(--dim);border-bottom:1px solid #14181e;
-  display:flex;justify-content:space-between;flex:none;
-}
+#meta{padding:7px 14px;font-size:11px;color:var(--dim);border-bottom:1px solid #14181e;display:flex;justify-content:space-between;flex:none}
 #meta b{color:var(--accent)}
 
-/* LIST */
 #list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.row{
-  display:grid;gap:8px;padding:12px 14px;border-bottom:1px solid #14181e;
-  cursor:pointer;align-items:center;
-}
+.row{display:grid;gap:8px;padding:12px 14px;border-bottom:1px solid #14181e;cursor:pointer;align-items:center}
 .row:active,.row:hover{background:var(--hover)}
 .row .c1{color:var(--dim);font-size:12px}
 .row .c2{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -115,35 +68,19 @@ body{display:flex;flex-direction:column}
 
 #empty{display:none;padding:48px 16px;text-align:center;color:var(--dim);font-size:13px}
 #empty.show{display:block}
-
-#more{
-  display:none;width:100%;background:var(--panel);border:none;border-top:1px solid var(--border);
-  color:var(--fg);padding:14px;font-size:13px;cursor:pointer;flex:none;
-}
+#more{display:none;width:100%;background:var(--panel);border:none;border-top:1px solid var(--border);color:var(--fg);padding:14px;font-size:13px;cursor:pointer;flex:none}
 #more.show{display:block}
 #more:active{background:var(--hover)}
 
-/* STATS */
-#statsbar{
-  display:none;padding:8px 14px;border-top:1px solid var(--border);
-  background:var(--panel);font-size:11px;color:var(--dim);flex:none;gap:16px;flex-wrap:wrap;
-}
+#statsbar{display:none;padding:8px 14px;border-top:1px solid var(--border);background:var(--panel);font-size:11px;color:var(--dim);flex:none;gap:16px;flex-wrap:wrap}
 #statsbar.show{display:flex}
 #statsbar b{color:var(--accent)}
 
-/* DRAWER */
 #drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;display:none}
 #drawer-bg.show{display:block}
-#drawer{
-  position:fixed;top:0;bottom:0;right:0;width:min(360px,94vw);z-index:51;
-  background:#000;border-left:1px solid var(--border);
-  transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding:18px;
-}
+#drawer{position:fixed;top:0;bottom:0;right:0;width:min(360px,94vw);z-index:51;background:#000;border-left:1px solid var(--border);transform:translateX(100%);transition:transform .25s ease;overflow-y:auto;padding:18px}
 #drawer.show{transform:translateX(0)}
-#drawer .close{
-  background:none;border:1px solid var(--border);color:var(--fg);
-  width:30px;height:30px;font-size:14px;cursor:pointer;border-radius:4px;float:left;
-}
+#drawer .close{background:none;border:1px solid var(--border);color:var(--fg);width:30px;height:30px;font-size:14px;cursor:pointer;border-radius:4px;float:left}
 #drawer .close:hover{border-color:var(--accent)}
 #drawer h2{font-size:18px;margin:10px 0 4px;clear:both;word-break:break-word}
 #drawer .sub{color:var(--dim);font-size:12px;margin-bottom:18px}
@@ -151,12 +88,7 @@ body{display:flex;flex-direction:column}
 .df .k{color:var(--dim);font-size:11px;min-width:100px;flex:none}
 .df .v{font-size:14px;word-break:break-word}
 
-/* TOAST */
-#toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(40px);
-  background:#000;border:1px solid var(--accent);color:var(--accent);
-  padding:10px 18px;font-size:12px;z-index:80;opacity:0;transition:.25s;pointer-events:none;border-radius:4px;
-}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(40px);background:#000;border:1px solid var(--accent);color:var(--accent);padding:10px 18px;font-size:12px;z-index:80;opacity:0;transition:.25s;pointer-events:none;border-radius:4px}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
@@ -181,23 +113,19 @@ body{display:flex;flex-direction:column}
 
 <div id="main">
   <div id="searchbar">
-    <input type="text" id="q" placeholder="ابحث..." autocomplete="off" spellcheck="false">
+    <input type="text" id="q" placeholder="الاسم · رقم التقديم · رقم القرعة..." autocomplete="off" spellcheck="false">
     <button class="sbtn" id="filt-btn">فلتر</button>
     <label class="sbtn" for="file-input">DB</label>
     <input type="file" id="file-input" accept=".db,.sqlite">
   </div>
-
   <div id="filters"></div>
-
-  <div id="meta"><span id="meta-l">جاهز — ارفع قاعدة بيانات</span><span id="meta-r"></span></div>
-
+  <div id="meta"><span id="meta-l">جاهز — ارفع قاعدة البيانات</span><span id="meta-r"></span></div>
   <div id="list"></div>
   <div id="empty">لا توجد نتائج</div>
   <button id="more">المزيد</button>
 </div>
 
 <div id="statsbar"></div>
-
 <div id="drawer-bg"></div>
 <div id="drawer"></div>
 <div id="toast"></div>
@@ -206,9 +134,7 @@ body{display:flex;flex-direction:column}
 <script>
 const USER='humam', PASS='humam';
 document.getElementById('go').onclick=()=>{
-  const u=document.getElementById('user').value.trim();
-  const p=document.getElementById('pass').value;
-  if(u===USER&&p===PASS){
+  if(document.getElementById('user').value.trim()===USER && document.getElementById('pass').value===PASS){
     document.getElementById('login').classList.add('out');
     localStorage.setItem('humam_ok','1');
   }else document.getElementById('err').classList.add('show');
@@ -216,31 +142,38 @@ document.getElementById('go').onclick=()=>{
 document.getElementById('pass').onkeydown=e=>{if(e.key==='Enter')document.getElementById('go').click()};
 if(localStorage.getItem('humam_ok')==='1') document.getElementById('login').classList.add('out');
 
-let db=null, SQL=null, offset=0, pageSize=40, mode=null, rcNameMap={};
+let db=null, SQL=null, offset=0, pageSize=50, mode=null;
 const $=id=>document.getElementById(id);
 
-function toast(m){
-  const t=$('toast');t.textContent=m;t.classList.add('show');
-  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1800);
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1800)}
+function esc(s){return (s||'').replace(/[%_]/g,m=>'\\'+m)}
+
+/* Arabic normalize (same logic as name_norm) */
+function normalize(s){
+  if(!s) return '';
+  return s
+    .replace(/[أإآٱ]/g,'ا')
+    .replace(/ى/g,'ي')
+    .replace(/ة/g,'ه')
+    .replace(/[\u064B-\u065F\u0670]/g,'')  // tashkeel
+    .replace(/ـ/g,'')                      // tatweel
+    .trim();
 }
 
-function esc(s){return (s||'').replace(/[%_]/g,m=>'\\'+m)}
-function tokenize(t){return t?t.trim().split(/\s+/).filter(Boolean):[]}
-
-/* Detect schema */
 function detectMode(){
   try{
     const tables=db.exec("SELECT name FROM sqlite_master WHERE type='table'")[0].values.map(r=>r[0]);
+    if(tables.includes('applicants')) return 'all';
     if(tables.includes('candidates')) return 'lottery';
     if(tables.includes('person')) return 'humam';
   }catch(e){}
   return null;
 }
 
-/* ===== LOAD DB ===== */
+/* ===== LOAD ===== */
 $('file-input').onchange=async e=>{
-  const f=e.target.files[0];if(!f)return;
-  $('dot').className='dot busy';$('stxt').textContent='جاري التحميل...';
+  const f=e.target.files[0]; if(!f) return;
+  $('dot').className='dot busy'; $('stxt').textContent='جاري التحميل...';
   try{
     if(!SQL) SQL=await initSqlJs({locateFile:f=>`https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${f}`});
     const buf=await f.arrayBuffer();
@@ -249,22 +182,41 @@ $('file-input').onchange=async e=>{
     mode=detectMode();
     if(!mode){toast('قاعدة غير معروفة');$('dot').className='dot';$('stxt').textContent='خطأ';return}
     $('dot').className='dot on';
-    $('stxt').textContent=(mode==='lottery'?'قرعة · ':'سجل · ')+f.name.slice(0,16);
+    const labels={all:'كل المحافظات',lottery:'قرعة',humam:'سجل'};
+    $('stxt').textContent=labels[mode]+' · '+f.name.slice(0,14);
     buildFilters();
     updateStats();
     search(true);
-    toast(mode==='lottery'?'وضع القرعة':'وضع السجل');
+    toast('تم التحميل');
   }catch(err){
-    $('dot').className='dot';$('stxt').textContent='خطأ';
-    toast('فشل التحميل');
+    console.error(err);
+    $('dot').className='dot'; $('stxt').textContent='خطأ';
+    toast('فشل التحميل — الملف كبير؟');
   }
 };
 
 /* ===== FILTERS ===== */
 function buildFilters(){
-  const box=$('filters');
-  box.innerHTML='';
-  if(mode==='lottery'){
+  const box=$('filters'); box.innerHTML='';
+  if(mode==='all'){
+    box.innerHTML=`
+      <select id="f-gov"><option value="">كل المحافظات</option></select>
+      <select id="f-gender"><option value="">الجنس</option><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option></select>
+      <select id="f-degree"><option value="">الشهادة</option></select>`;
+    try{
+      // governorates
+      const govs=db.exec("SELECT id, name FROM governorates ORDER BY name");
+      if(govs.length) govs[0].values.forEach(([id,name])=>{
+        const o=document.createElement('option'); o.value=id; o.textContent=name; $('f-gov').appendChild(o);
+      });
+      // degrees
+      const degs=db.exec("SELECT id, name FROM degrees ORDER BY sort_order");
+      if(degs.length) degs[0].values.forEach(([id,name])=>{
+        const o=document.createElement('option'); o.value=id; o.textContent=name; $('f-degree').appendChild(o);
+      });
+    }catch(e){}
+    ['f-gov','f-gender','f-degree'].forEach(id=>$(id).onchange=()=>search(true));
+  }else if(mode==='lottery'){
     box.innerHTML=`
       <select id="f1"><option value="">كل المراكز</option></select>
       <select id="f2"><option value="">الجنس</option><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option></select>
@@ -280,12 +232,10 @@ function buildFilters(){
     ['f1','f2','f3'].forEach(id=>$(id).onchange=()=>search(true));
   }else{
     box.innerHTML=`<select id="f1"><option value="">كل المراكز</option></select>`;
-    rcNameMap={};
     try{
       const res=db.exec("SELECT rc_no, rc_name FROM rc ORDER BY rc_name");
       if(res.length) res[0].values.forEach(([no,name])=>{
-        rcNameMap[no]=name?name.trim():no;
-        const o=document.createElement('option');o.value=no;o.textContent=rcNameMap[no];$('f1').appendChild(o);
+        const o=document.createElement('option');o.value=no;o.textContent=name||no;$('f1').appendChild(o);
       });
     }catch(e){}
     $('f1').onchange=()=>search(true);
@@ -294,45 +244,39 @@ function buildFilters(){
 
 /* ===== STATS ===== */
 function updateStats(){
-  const bar=$('statsbar');
-  bar.innerHTML='';bar.classList.add('show');
+  const bar=$('statsbar'); bar.innerHTML=''; bar.classList.add('show');
   try{
-    if(mode==='lottery'){
+    if(mode==='all'){
+      const total=db.exec("SELECT COUNT(*) FROM applicants")[0].values[0][0];
+      const govs=db.exec("SELECT COUNT(*) FROM governorates")[0].values[0][0];
+      const centers=db.exec("SELECT COUNT(*) FROM centers")[0].values[0][0];
+      bar.innerHTML=`<span>المتقدمون <b>${Number(total).toLocaleString()}</b></span>
+                     <span>المحافظات <b>${govs}</b></span>
+                     <span>المراكز <b>${centers}</b></span>`;
+    }else if(mode==='lottery'){
       const total=db.exec("SELECT COUNT(*) FROM candidates")[0].values[0][0];
       const m=db.exec("SELECT COUNT(*) FROM candidates WHERE gender='ذكر'")[0].values[0][0];
       const f=db.exec("SELECT COUNT(*) FROM candidates WHERE gender='أنثى'")[0].values[0][0];
-      const c=db.exec("SELECT COUNT(DISTINCT registration_center_name) FROM candidates")[0].values[0][0];
-      bar.innerHTML=`<span>الكل <b>${total.toLocaleString()}</b></span>
-                     <span>ذكور <b>${m.toLocaleString()}</b></span>
-                     <span>إناث <b>${f.toLocaleString()}</b></span>
-                     <span>مراكز <b>${c}</b></span>`;
+      bar.innerHTML=`<span>الكل <b>${Number(total).toLocaleString()}</b></span>
+                     <span>ذكور <b>${Number(m).toLocaleString()}</b></span>
+                     <span>إناث <b>${Number(f).toLocaleString()}</b></span>`;
     }else{
       const p=db.exec("SELECT COUNT(*) FROM person")[0].values[0][0];
-      const f=db.exec("SELECT COUNT(DISTINCT rc_no||'-'||fam_no) FROM person")[0].values[0][0];
-      const c=db.exec("SELECT COUNT(*) FROM rc")[0].values[0][0];
-      bar.innerHTML=`<span>أشخاص <b>${p.toLocaleString()}</b></span>
-                     <span>عائلات <b>${f.toLocaleString()}</b></span>
-                     <span>مراكز <b>${c}</b></span>`;
+      bar.innerHTML=`<span>أشخاص <b>${Number(p).toLocaleString()}</b></span>`;
     }
   }catch(e){}
 }
 
 /* ===== SEARCH ===== */
 function search(reset){
-  if(!db||!mode)return;
+  if(!db||!mode) return;
   if(reset){offset=0;$('list').innerHTML='';$('empty').classList.remove('show')}
-
   const text=$('q').value.trim();
-  const tokens=tokenize(text);
   const t0=performance.now();
   let rows=[];
-
-  if(mode==='lottery'){
-    rows=searchLottery(tokens);
-  }else{
-    rows=searchHumam(tokens);
-  }
-
+  if(mode==='all') rows=searchAll(text);
+  else if(mode==='lottery') rows=searchLottery(text);
+  else rows=searchHumam(text);
   const ms=Math.round(performance.now()-t0);
 
   if(reset&&!rows.length){
@@ -346,43 +290,87 @@ function search(reset){
   rows.forEach(r=>{
     const d=document.createElement('div');
     d.className='row';
-    if(mode==='lottery'){
+    if(mode==='all'){
+      d.style.gridTemplateColumns='54px 1fr 70px 80px';
+      d.innerHTML=`<span class="c1">${r.lottery_no||'—'}</span>
+                   <span class="c2">${r.name||'—'}</span>
+                   <span class="c3">${r.gender||''}</span>
+                   <span class="c4">${r.gov_name||''}</span>`;
+    }else if(mode==='lottery'){
       d.style.gridTemplateColumns='50px 1fr 60px 90px';
       d.innerHTML=`<span class="c1">${r.lottery_number||'—'}</span>
                    <span class="c2">${r.name||'—'}</span>
                    <span class="c3">${r.gender||''}</span>
                    <span class="c4">${r.education_level||''}</span>`;
-      if(text&&r.name&&r.name.includes(text)) d.classList.add('hit');
     }else{
       d.style.gridTemplateColumns='40px 1fr 80px 70px';
       d.innerHTML=`<span class="c1">${r.seq||'—'}</span>
                    <span class="c2">${r.name||'—'}</span>
                    <span class="c3">${r.father||''}</span>
                    <span class="c4">${r.id_no||''}</span>`;
-      if(tokens.length&&tokens.every(t=>
-        (r.name&&r.name.includes(t))||(r.father&&r.father.includes(t))||(r.grandfather&&r.grandfather.includes(t))||(r.id_no&&String(r.id_no).includes(t))
-      )) d.classList.add('hit');
     }
+    if(text && r.name && r.name.includes(text)) d.classList.add('hit');
     d.onclick=()=>openDrawer(r);
     frag.appendChild(d);
   });
   $('list').appendChild(frag);
-
   offset+=rows.length;
-  $('meta-l').innerHTML=`<b>${offset}</b> · ${ms}ms`;
+  $('meta-l').innerHTML=`<b>${offset.toLocaleString()}</b> · ${ms}ms`;
   $('meta-r').textContent=text||'';
   $('more').classList.toggle('show',rows.length===pageSize);
 }
 
-function searchLottery(tokens){
+function searchAll(text){
+  const gov=$('f-gov')?.value||'';
+  const gender=$('f-gender')?.value||'';
+  const degree=$('f-degree')?.value||'';
+  let where=[], params=[];
+
+  if(text){
+    const norm=normalize(text);
+    // Use name_norm for better Arabic matching + original fields
+    where.push(`(name_norm LIKE ? OR name LIKE ? OR CAST(application_no AS TEXT) LIKE ? OR CAST(lottery_no AS TEXT) LIKE ?)`);
+    const like='%'+esc(norm)+'%';
+    const likeRaw='%'+esc(text)+'%';
+    params.push(like, likeRaw, likeRaw, likeRaw);
+  }
+  if(gov){where.push("governorate_id=?"); params.push(gov)}
+  if(gender){where.push("gender=?"); params.push(gender)}
+  if(degree){where.push("degree_id=?"); params.push(degree)}
+
+  const wsql=where.length?'WHERE '+where.join(' AND '):'';
+
+  // Prefer applicants_full view if exists, else join manually
+  let sql;
+  try{
+    db.exec("SELECT 1 FROM applicants_full LIMIT 1");
+    sql=`SELECT application_no, name, gender, lottery_no, page_no,
+                gov_name, center_name, degree_name, governorate_id, center_id, degree_id
+         FROM applicants_full ${wsql} ORDER BY name_norm LIMIT ${pageSize} OFFSET ${offset}`;
+  }catch(e){
+    sql=`SELECT a.application_no, a.name, a.gender, a.lottery_no, a.page_no,
+                g.name AS gov_name, c.name AS center_name, d.name AS degree_name,
+                a.governorate_id, a.center_id, a.degree_id
+         FROM applicants a
+         LEFT JOIN governorates g ON g.id=a.governorate_id
+         LEFT JOIN centers c ON c.id=a.center_id
+         LEFT JOIN degrees d ON d.id=a.degree_id
+         ${wsql} ORDER BY a.name_norm LIMIT ${pageSize} OFFSET ${offset}`;
+  }
+
+  const stmt=db.prepare(sql); stmt.bind(params);
+  const rows=[]; while(stmt.step()) rows.push(stmt.getAsObject()); stmt.free();
+  return rows;
+}
+
+function searchLottery(text){
   const center=$('f1')?.value||'';
   const gender=$('f2')?.value||'';
   const edu=$('f3')?.value||'';
   let where=[],params=[];
-  if(tokens.length){
-    const q=tokens.join(' ');
-    const like='%'+esc(q)+'%';
-    where.push("(name LIKE ? ESCAPE '\\' OR application_number LIKE ? ESCAPE '\\' OR lottery_number LIKE ? ESCAPE '\\')");
+  if(text){
+    const like='%'+esc(text)+'%';
+    where.push("(name LIKE ? OR application_number LIKE ? OR lottery_number LIKE ?)");
     params.push(like,like,like);
   }
   if(center){where.push("registration_center_name=?");params.push(center)}
@@ -397,20 +385,20 @@ function searchLottery(tokens){
   return rows;
 }
 
-function searchHumam(tokens){
+function searchHumam(text){
   const rc=$('f1')?.value||'';
   let where=[],params=[];
-  if(tokens.length===1){
-    const like='%'+esc(tokens[0])+'%';
-    where.push("(name LIKE ? ESCAPE '\\' OR father LIKE ? ESCAPE '\\' OR grandfather LIKE ? ESCAPE '\\' OR id_no LIKE ? ESCAPE '\\')");
-    params.push(like,like,like,like);
-  }else if(tokens.length===2){
-    where.push("name LIKE ? ESCAPE '\\'");params.push('%'+esc(tokens[0])+'%');
-    where.push("father LIKE ? ESCAPE '\\'");params.push('%'+esc(tokens[1])+'%');
-  }else if(tokens.length>=3){
-    where.push("name LIKE ? ESCAPE '\\'");params.push('%'+esc(tokens[0])+'%');
-    where.push("father LIKE ? ESCAPE '\\'");params.push('%'+esc(tokens[1])+'%');
-    where.push("grandfather LIKE ? ESCAPE '\\'");params.push('%'+esc(tokens[2])+'%');
+  if(text){
+    const tokens=text.trim().split(/\s+/).filter(Boolean);
+    if(tokens.length===1){
+      const like='%'+esc(tokens[0])+'%';
+      where.push("(name LIKE ? OR father LIKE ? OR grandfather LIKE ? OR id_no LIKE ?)");
+      params.push(like,like,like,like);
+    }else if(tokens.length>=2){
+      where.push("name LIKE ?"); params.push('%'+esc(tokens[0])+'%');
+      where.push("father LIKE ?"); params.push('%'+esc(tokens[1])+'%');
+      if(tokens[2]){where.push("grandfather LIKE ?"); params.push('%'+esc(tokens[2])+'%')}
+    }
   }
   if(rc){where.push("rc_no=?");params.push(rc)}
   const wsql=where.length?'WHERE '+where.join(' AND '):'';
@@ -424,7 +412,18 @@ function searchHumam(tokens){
 /* ===== DRAWER ===== */
 function openDrawer(p){
   let html=`<button class="close" onclick="closeDrawer()">✕</button>`;
-  if(mode==='lottery'){
+  if(mode==='all'){
+    html+=`
+      <h2>${p.name||'—'}</h2>
+      <div class="sub">${p.gender||''} · ${p.degree_name||''}</div>
+      <div class="df"><span class="k">رقم القرعة</span><span class="v">${p.lottery_no||'—'}</span></div>
+      <div class="df"><span class="k">رقم التقديم</span><span class="v">${p.application_no||'—'}</span></div>
+      <div class="df"><span class="k">الجنس</span><span class="v">${p.gender||'—'}</span></div>
+      <div class="df"><span class="k">الشهادة</span><span class="v">${p.degree_name||'—'}</span></div>
+      <div class="df"><span class="k">المحافظة</span><span class="v">${p.gov_name||'—'}</span></div>
+      <div class="df"><span class="k">المركز</span><span class="v">${p.center_name||'—'}</span></div>
+      <div class="df"><span class="k">الصفحة</span><span class="v">${p.page_no||'—'}</span></div>`;
+  }else if(mode==='lottery'){
     html+=`
       <h2>${p.name||'—'}</h2>
       <div class="sub">${p.gender||''} · ${p.education_level||''}</div>
@@ -433,34 +432,16 @@ function openDrawer(p){
       <div class="df"><span class="k">الجنس</span><span class="v">${p.gender||'—'}</span></div>
       <div class="df"><span class="k">التحصيل</span><span class="v">${p.education_level||'—'}</span></div>
       <div class="df"><span class="k">المحافظة</span><span class="v">${p.governorate||'—'}</span></div>
-      <div class="df"><span class="k">الدائرة</span><span class="v">${p.electoral_district||'—'}</span></div>
       <div class="df"><span class="k">المركز</span><span class="v">${p.registration_center_name||'—'}</span></div>
-      <div class="df"><span class="k">رقم المركز</span><span class="v">${p.registration_center_number||'—'}</span></div>
       <div class="df"><span class="k">الصفحة</span><span class="v">${p.page_number||'—'}</span></div>`;
   }else{
-    let addr='';
-    try{
-      const fam=db.exec("SELECT dist,area,street,house FROM family WHERE rc_no=? AND fam_no=?",[p.rc_no,p.fam_no]);
-      if(fam.length&&fam[0].values[0]){
-        const [dist,area,street,house]=fam[0].values[0];
-        addr=[rcNameMap[p.rc_no]||p.rc_no,dist,area?'محلة '+area:'',street?'زقاق '+street:'',house?'دار '+house:''].filter(Boolean).join(' · ');
-      }
-    }catch(e){}
-    const birth=p.birth?String(p.birth).slice(0,4):'—';
-    const age=p.birth?((new Date().getFullYear()-parseInt(String(p.birth).slice(0,4),10))+' سنة'):'—';
     html+=`
       <h2>${p.name||'—'}</h2>
-      <div class="sub">${p.father||''}${p.grandfather?' / '+p.grandfather:''}</div>
+      <div class="sub">${p.father||''}</div>
       <div class="df"><span class="k">الأب</span><span class="v">${p.father||'—'}</span></div>
       <div class="df"><span class="k">الجد</span><span class="v">${p.grandfather||'—'}</span></div>
-      <div class="df"><span class="k">الميلاد</span><span class="v">${birth}</span></div>
-      <div class="df"><span class="k">العمر</span><span class="v">${age}</span></div>
       <div class="df"><span class="k">الهوية</span><span class="v">${p.id_no||'—'}</span></div>
-      <div class="df"><span class="k">السجل</span><span class="v">${p.reg_no||'—'}</span></div>
-      <div class="df"><span class="k">الصحيفة</span><span class="v">${p.page_no||'—'}</span></div>
-      <div class="df"><span class="k">العائلة</span><span class="v">${p.fam_no||'—'}</span></div>
-      <div class="df"><span class="k">المركز</span><span class="v">${rcNameMap[p.rc_no]||p.rc_no||'—'}</span></div>
-      <div class="df"><span class="k">العنوان</span><span class="v">${addr||'—'}</span></div>`;
+      <div class="df"><span class="k">العائلة</span><span class="v">${p.fam_no||'—'}</span></div>`;
   }
   $('drawer').innerHTML=html;
   $('drawer').classList.add('show');
@@ -470,14 +451,10 @@ function closeDrawer(){$('drawer').classList.remove('show');$('drawer-bg').class
 $('drawer-bg').onclick=closeDrawer;
 document.onkeydown=e=>{if(e.key==='Escape')closeDrawer()};
 
-/* ===== EVENTS ===== */
 let timer;
-$('q').oninput=()=>{clearTimeout(timer);timer=setTimeout(()=>search(true),220)};
+$('q').oninput=()=>{clearTimeout(timer);timer=setTimeout(()=>search(true),250)};
 $('filt-btn').onclick=()=>$('filters').classList.toggle('show');
 $('more').onclick=()=>search(false);
-
-/* Placeholder text by mode */
-const origPlaceholder=$('q').placeholder;
 </script>
 </body>
 </html>
