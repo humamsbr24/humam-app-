@@ -209,238 +209,155 @@ else if (typeof exports === 'object'){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous"></script>
 
     <style>
-        /* ============================================================
-               ROOT VARIABLES – CYBER DARK THEME
-               ============================================================ */
         :root {
-            --bg-primary: #080c16;
-            --bg-secondary: #0b1424;
-            --bg-card: rgba(13, 22, 40, 0.78);
-            --bg-card-hover: rgba(20, 34, 60, 0.92);
-            --bg-input: rgba(6, 12, 24, 0.92);
-            --border-subtle: rgba(0, 200, 255, 0.12);
-            --border-glow: rgba(0, 200, 255, 0.35);
-            --neon-blue: #00d4ff;
-            --neon-cyan: #00aaff;
-            --neon-purple: #7b2fbe;
-            --neon-green: #00ffa3;
-            --neon-red: #ff3b6f;
-            --neon-orange: #ff9900;
-            --text-primary: #edf2fc;
-            --text-secondary: #a0b3cc;
-            --text-muted: #5a6f8a;
-            --shadow-glow: 0 0 40px rgba(0, 200, 255, 0.08);
+            --bg: #f4f6fb;
+            --bg-card: #ffffff;
+            --bg-soft: #f8fafc;
+            --border: #e5eaf2;
+            --border-soft: #edf1f7;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-soft: #eff6ff;
+            --success: #10b981;
+            --success-soft: #ecfdf5;
+            --warning: #f59e0b;
+            --warning-soft: #fffbeb;
+            --danger: #ef4444;
+            --danger-soft: #fef2f2;
+            --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 16px rgba(15,23,42,.04);
+            --shadow-md: 0 4px 20px rgba(15,23,42,.08);
             --radius: 16px;
             --radius-sm: 10px;
-            --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            --font-arabic: 'IBM Plex Sans Arabic', sans-serif;
-            --font-title: 'Cairo', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --font: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
         }
 
-        /* ============================================================
-               RESET & BASE
-               ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { height: 100%; }
         body {
-            background: var(--bg-primary);
-            background-image:
-                radial-gradient(ellipse 900px 600px at 20% 0%, rgba(0, 180, 255, 0.04) 0%, transparent 70%),
-                radial-gradient(ellipse 700px 500px at 80% 100%, rgba(123, 47, 190, 0.04) 0%, transparent 70%);
-            color: var(--text-primary);
-            font-family: var(--font-arabic);
-            min-height: 100vh;
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100%;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        ::selection {
-            background: rgba(0, 200, 255, 0.3);
-            color: #fff;
-        }
-
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(0, 200, 255, 0.25);
-            border-radius: 8px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-blue);
-        }
-
-        a, button {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ============================================================
-               GLASS MIXIN
-               ============================================================ */
-        .glass {
-            background: var(--bg-card);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* ============================================================
-               BUTTONS
-               ============================================================ */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 22px;
-            border-radius: var(--radius-sm);
-            font-family: var(--font-title);
-            font-weight: 700;
-            font-size: 14px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, rgba(0, 180, 255, 0.25), rgba(0, 200, 255, 0.35));
-            border-color: var(--border-glow);
-            color: var(--neon-blue);
-        }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, rgba(0, 180, 255, 0.45), rgba(0, 200, 255, 0.55));
-            box-shadow: 0 0 30px rgba(0, 200, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(0, 220, 140, 0.25));
-            border-color: rgba(0, 255, 163, 0.4);
-            color: var(--neon-green);
-        }
-        .btn-success:hover {
-            background: linear-gradient(135deg, rgba(0, 255, 163, 0.30), rgba(0, 220, 140, 0.40));
-            box-shadow: 0 0 30px rgba(0, 255, 163, 0.20);
-            transform: translateY(-2px);
-        }
-
-        .btn-danger {
-            background: rgba(255, 59, 111, 0.12);
-            border-color: rgba(255, 59, 111, 0.30);
-            color: var(--neon-red);
-        }
-        .btn-danger:hover {
-            background: rgba(255, 59, 111, 0.25);
-            border-color: var(--neon-red);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border-color: var(--border-subtle);
-            color: var(--text-secondary);
-        }
-        .btn-outline:hover {
-            border-color: var(--neon-blue);
-            color: var(--neon-blue);
-            background: rgba(0, 200, 255, 0.06);
-        }
-
-        .btn-block {
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* ============================================================
-               LOGIN SCREEN
-               ============================================================ */
+        /* ========== LOGIN ========== */
         #login-screen {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: var(--bg-primary);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            padding: 24px;
+            background: linear-gradient(145deg, #eef2ff 0%, #f8fafc 40%, #eff6ff 100%);
+            position: relative;
+            overflow: hidden;
         }
-        #login-screen.hidden {
-            opacity: 0;
-            transform: scale(0.96);
-            pointer-events: none;
-        }
-
-        .login-grid {
+        #login-screen::before {
+            content: '';
             position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 200, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 200, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
+            width: 480px; height: 480px;
+            background: radial-gradient(circle, rgba(37,99,235,.12) 0%, transparent 70%);
+            top: -120px; right: -100px;
             pointer-events: none;
         }
+        #login-screen::after {
+            content: '';
+            position: absolute;
+            width: 360px; height: 360px;
+            background: radial-gradient(circle, rgba(16,185,129,.08) 0%, transparent 70%);
+            bottom: -80px; left: -60px;
+            pointer-events: none;
+        }
+        #login-screen.hidden { display: none; }
 
         .login-card {
-            position: relative;
-            z-index: 10;
             width: 100%;
-            max-width: 440px;
-            padding: 44px 36px;
-            border-color: rgba(0, 200, 255, 0.15);
+            max-width: 420px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md), 0 0 0 1px rgba(255,255,255,.8);
+            padding: 40px 36px;
+            position: relative;
+            z-index: 1;
+            animation: cardIn .5s cubic-bezier(.22,1,.36,1);
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(24px) scale(.97); }
+            to { opacity: 1; transform: none; }
         }
 
-        .login-card .brand {
+        .brand {
             text-align: center;
-            margin-bottom: 34px;
+            margin-bottom: 32px;
         }
-        .login-card .brand .logo {
-            display: inline-block;
-            width: 64px;
-            height: 64px;
-            margin-bottom: 14px;
+        .logo-wrap {
+            width: 72px; height: 72px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37,99,235,.3);
+            transition: transform .3s, box-shadow .3s;
         }
-        .login-card .brand h1 {
-            font-family: var(--font-title);
-            font-size: 30px;
-            font-weight: 900;
+        .logo-wrap:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 28px rgba(37,99,235,.4);
         }
-        .login-card .brand h1 span {
-            color: var(--neon-blue);
+        .logo-wrap svg { width: 36px; height: 36px; }
+        .brand h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
         }
-        .login-card .brand .sub {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 3px;
-            color: var(--neon-blue);
-            opacity: 0.7;
-            margin-top: 4px;
+        .brand h1 span {
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .brand .sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 500;
         }
 
-        .form-group {
-            margin-bottom: 18px;
+        .login-error {
+            display: none;
+            background: var(--danger-soft);
+            color: var(--danger);
+            border: 1px solid #fecaca;
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 8px;
+            animation: shake .4s ease;
         }
+        .login-error.show { display: flex; }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            20%,60% { transform: translateX(-6px); }
+            40%,80% { transform: translateX(6px); }
+        }
+
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 6px;
+            margin-bottom: 7px;
         }
         .input-wrap {
             position: relative;
@@ -449,29 +366,35 @@ else if (typeof exports === 'object'){
         }
         .input-wrap input {
             width: 100%;
-            background: var(--bg-input);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 14px 18px;
-            color: var(--text-primary);
-            font-family: var(--font-arabic);
+            height: 48px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 0 16px;
+            font-family: inherit;
             font-size: 15px;
-            transition: all var(--transition);
+            background: var(--bg-soft);
+            color: var(--text);
+            transition: border-color .2s, box-shadow .2s, background .2s;
         }
         .input-wrap input:focus {
             outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 25px rgba(0, 200, 255, 0.15);
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(37,99,235,.12);
         }
-        .input-wrap .toggle-vis {
+        .input-wrap input::placeholder { color: var(--text-muted); }
+        .toggle-vis {
             position: absolute;
-            left: 14px;
+            left: 12px;
             background: none;
             border: none;
-            color: var(--text-muted);
-            font-size: 17px;
             cursor: pointer;
+            font-size: 16px;
+            opacity: .6;
+            transition: opacity .2s;
+            padding: 4px;
         }
+        .toggle-vis:hover { opacity: 1; }
 
         .form-extra {
             display: flex;
@@ -479,592 +402,639 @@ else if (typeof exports === 'object'){
             justify-content: space-between;
             margin-bottom: 24px;
             font-size: 13px;
+            color: var(--text-secondary);
         }
         .form-extra label {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-secondary);
             cursor: pointer;
+            font-weight: 500;
+        }
+        .form-extra input[type=checkbox] {
+            width: 16px; height: 16px;
+            accent-color: var(--primary);
         }
 
-        .login-error {
-            background: rgba(255, 59, 111, 0.10);
-            border: 1px solid rgba(255, 59, 111, 0.25);
-            color: #ff88aa;
-            padding: 12px 16px;
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            display: flex;
+        .btn {
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            opacity: 0;
-            transform: translateY(-8px);
-            transition: all 0.3s ease;
-            pointer-events: none;
+            justify-content: center;
+            gap: 8px;
+            height: 48px;
+            padding: 0 22px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
         }
-        .login-error.show {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(37,99,235,.35);
         }
-
-        .login-btn .spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(37,99,235,.4);
+        }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-block { width: 100%; }
+        .btn .spinner {
+            width: 18px; height: 18px;
+            border: 2.5px solid rgba(255,255,255,.3);
             border-top-color: #fff;
             border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-        .login-btn.loading .spinner {
-            display: inline-block;
-        }
-        .login-btn.loading .btn-text {
             display: none;
+            animation: spin .7s linear infinite;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        .btn.loading .spinner { display: block; }
+        .btn.loading .btn-text { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ============================================================
-               APP LAYOUT & SIDEBAR
-               ============================================================ */
+        /* ========== APP LAYOUT ========== */
         #app-layout {
-            display: flex;
             min-height: 100vh;
-            opacity: 0;
-            animation: fadeIn 0.6s ease 0.2s forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            right: 0;
-            z-index: 200;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 22px 16px 18px;
-            border-left: 1px solid var(--border-subtle);
-            background: rgba(6, 10, 20, 0.92);
-            backdrop-filter: blur(20px);
-            transition: transform 0.35s ease;
-            overflow-y: auto;
         }
-        .sidebar-header {
+        #app-layout.hidden { display: none; }
+
+        /* Top Header */
+        .topbar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-bottom: 18px;
-            border-bottom: 1px solid var(--border-subtle);
+            gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,.04);
         }
-        .sidebar-brand {
+        .topbar-brand {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .sidebar-brand .logo-sm {
-            width: 34px;
-            height: 34px;
-        }
-        .sidebar-brand .brand-text {
-            font-family: var(--font-title);
-            font-weight: 800;
-            font-size: 18px;
-            line-height: 1.2;
-        }
-        .sidebar-brand .brand-text span {
-            display: block;
-            font-size: 9px;
-            font-family: var(--font-mono);
-            color: var(--neon-blue);
-        }
-        .sidebar-close {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin-top: 18px;
-            flex: 1;
-        }
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 11px 14px;
-            border-radius: var(--radius-sm);
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            transition: all var(--transition);
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-        .nav-item:hover {
-            background: rgba(0, 200, 255, 0.06);
-            color: var(--text-primary);
-            border-color: rgba(0, 200, 255, 0.10);
-        }
-        .nav-item.active {
-            background: rgba(0, 200, 255, 0.10);
-            color: var(--neon-blue);
-            border-color: rgba(0, 200, 255, 0.20);
-        }
-
-        .sidebar-footer {
-            padding-top: 16px;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* ============================================================
-               MAIN CONTENT & TOPBAR
-               ============================================================ */
-        .main-wrap {
-            margin-right: 280px;
-            width: calc(100% - 280px);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: margin 0.35s ease, width 0.35s ease;
-        }
-
-        .topbar {
-            padding: 0 28px;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 90;
-            background: rgba(6, 10, 20, 0.80);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .topbar-left .menu-toggle {
-            display: none;
-            background: none;
-            border: 1px solid var(--border-subtle);
-            color: var(--text-primary);
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .topbar-left .sys-tag {
-            font-family: var(--font-mono);
-            font-size: 10px;
-            color: var(--neon-blue);
-            border: 1px solid var(--border-glow);
-            padding: 4px 14px;
-            border-radius: 30px;
-            background: rgba(0, 200, 255, 0.04);
-        }
-
-        .topbar-center .clock {
-            font-family: var(--font-mono);
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .topbar-center .clock .date {
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-
-        .topbar-right .op-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .topbar-right .op-badge .pulse {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--neon-green);
-            box-shadow: 0 0 12px var(--neon-green);
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.85); }
-        }
-
-        .content {
-            padding: 28px 32px;
-            max-width: 1360px;
-            margin: 0 auto;
-            width: 100%;
-            flex: 1;
-        }
-
-        .section {
-            display: none;
-            animation: slideUp 0.4s ease;
-        }
-        .section.active {
-            display: block;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============================================================
-               STATS & SEARCH
-               ============================================================ */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-        .stat-card {
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all var(--transition);
-        }
-        .stat-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-glow);
-        }
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-sm);
+        .topbar-logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            background: rgba(0, 200, 255, 0.06);
-            border: 1px solid var(--border-subtle);
+            flex-shrink: 0;
         }
-        .stat-info h4 {
-            font-size: 11.5px;
-            font-weight: 600;
-            color: var(--text-secondary);
+        .topbar-logo svg { width: 22px; height: 22px; }
+        .topbar-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.2;
         }
-        .stat-info .value {
-            font-family: var(--font-mono);
-            font-size: 22px;
-            font-weight: 700;
+        .topbar-title small {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
         }
-
-        .db-status-bar {
+        .topbar-actions {
             display: flex;
             align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            padding: 16px 20px;
-            margin-bottom: 28px;
+            gap: 8px;
         }
-        .db-status-bar .dot {
-            width: 10px;
-            height: 10px;
+        .icon-btn {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all .2s;
+            color: var(--text-secondary);
+        }
+        .icon-btn:hover {
+            background: var(--primary-soft);
+            border-color: #bfdbfe;
+            color: var(--primary);
+        }
+
+        /* Main content */
+        .main-wrap {
+            flex: 1;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Stats cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-soft);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .stat-card .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .stat-card .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+        .stat-card .stat-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .stat-icon {
+            width: 32px; height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+        .stat-icon.blue { background: var(--primary-soft); color: var(--primary); }
+        .stat-icon.green { background: var(--success-soft); color: var(--success); }
+        .stat-icon.orange { background: var(--warning-soft); color: var(--warning); }
+        .stat-icon.purple { background: #f3e8ff; color: #9333ea; }
+
+        /* DB status bar */
+        .db-bar {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-soft);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            justify-content: space-between;
+        }
+        .db-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex: 1;
+            min-width: 200px;
+        }
+        .dot {
+            width: 10px; height: 10px;
             border-radius: 50%;
             background: var(--text-muted);
+            flex-shrink: 0;
         }
-        .db-status-bar .dot.ok { background: var(--neon-green); box-shadow: 0 0 16px var(--neon-green); }
-        .db-status-bar .dot.busy { background: var(--neon-orange); animation: pulse 1s infinite; }
-        .db-status-bar .dot.err { background: var(--neon-red); }
+        .dot.ok { background: var(--success); box-shadow: 0 0 0 3px rgba(16,185,129,.2); }
+        .dot.busy { background: var(--warning); animation: pulse 1s infinite; }
+        .dot.err { background: var(--danger); }
+        @keyframes pulse { 50% { opacity: .5; } }
 
+        .db-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn-sm {
+            height: 36px;
+            padding: 0 14px;
+            font-size: 13px;
+            border-radius: 10px;
+        }
+        .btn-outline {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .btn-outline:hover {
+            background: var(--primary-soft);
+            border-color: #bfdbfe;
+            color: var(--primary);
+        }
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-success:hover { background: #059669; }
+
+        /* Search panel */
         .search-panel {
-            padding: 24px 28px;
-            margin-bottom: 24px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-soft);
         }
-        .search-main {
+        .search-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-input-wrap {
+            flex: 1;
+            min-width: 200px;
             position: relative;
-            margin-bottom: 16px;
         }
-        .search-main input {
+        .search-input-wrap input {
             width: 100%;
-            background: var(--bg-input);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 18px 22px;
-            padding-left: 50px;
-            color: var(--text-primary);
-            font-family: var(--font-arabic);
-            font-size: 16px;
+            height: 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 0 42px 0 16px;
+            font-family: inherit;
+            font-size: 14px;
+            background: var(--bg-soft);
+            transition: all .2s;
         }
-        .search-main input:focus {
+        .search-input-wrap input:focus {
             outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 35px rgba(0, 200, 255, 0.10);
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(37,99,235,.1);
         }
-        .search-main .clear-btn {
+        .search-input-wrap .clear-btn {
             position: absolute;
-            left: 16px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: var(--text-muted);
-            font-size: 16px;
             cursor: pointer;
-        }
-        .search-main .search-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
+            font-size: 14px;
             color: var(--text-muted);
-            font-size: 18px;
+            display: none;
         }
+        .search-input-wrap input:not(:placeholder-shown) + .clear-btn { display: block; }
 
-        .search-filters {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .search-filters select, .search-filters input {
-            width: 100%;
-            background: var(--bg-input);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 11px 14px;
-            color: var(--text-primary);
-            font-family: var(--font-arabic);
+        .filter-select {
+            height: 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 0 12px;
+            font-family: inherit;
             font-size: 13px;
-        }
-
-        .search-history {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            font-size: 12px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-subtle);
-        }
-        .search-history .tag {
-            background: rgba(0, 200, 255, 0.06);
-            border: 1px solid rgba(0, 200, 255, 0.12);
-            color: var(--neon-blue);
-            padding: 3px 14px;
-            border-radius: 30px;
+            background: var(--bg-soft);
+            color: var(--text);
+            min-width: 140px;
             cursor: pointer;
         }
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .limit-input {
+            width: 80px;
+            height: 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 0 10px;
+            font-family: inherit;
+            font-size: 13px;
+            text-align: center;
+            background: var(--bg-soft);
+        }
 
-        /* ============================================================
-               TABLES & FAMILY CARDS
-               ============================================================ */
-        .results-meta {
+        .history-tags {
             display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+            align-items: center;
+        }
+        .history-tags .label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all .15s;
+        }
+        .tag:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Results meta */
+        .results-meta {
+            display: none;
             align-items: center;
             justify-content: space-between;
-            font-family: var(--font-mono);
+            margin-bottom: 12px;
             font-size: 13px;
             color: var(--text-secondary);
-            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
+        .results-meta strong { color: var(--text); }
 
+        /* Family cards / results */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
         .family-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
             border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-soft);
             overflow: hidden;
-            margin-bottom: 20px;
+            animation: fadeUp .35s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: none; }
         }
         .family-header {
-            padding: 16px 22px;
-            background: rgba(0, 200, 255, 0.03);
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 18px;
+            background: linear-gradient(90deg, #f8fafc, #fff);
+            border-bottom: 1px solid var(--border-soft);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            align-items: flex-start;
             gap: 12px;
+            flex-wrap: wrap;
         }
         .family-header .title {
-            font-family: var(--font-title);
-            font-weight: 800;
-            font-size: 17px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .family-header .title small {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .family-header .src-badge {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid #bfdbfe;
+        }
+        .family-header .meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
         }
 
         .family-table-wrap {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .cyber-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
-            min-width: 900px;
+            min-width: 700px;
         }
         .cyber-table th {
-            background: rgba(6, 10, 20, 0.70);
-            color: var(--neon-blue);
-            font-family: var(--font-title);
-            padding: 12px 10px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-subtle);
+            background: #1e3a5f;
+            color: #fff;
+            font-weight: 600;
+            padding: 11px 12px;
+            text-align: right;
+            white-space: nowrap;
+            font-size: 12px;
         }
         .cyber-table td {
-            padding: 11px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            text-align: center;
+            padding: 11px 12px;
+            border-bottom: 1px solid var(--border-soft);
+            color: var(--text);
+            vertical-align: middle;
         }
-        .cyber-table .person-row {
+        .cyber-table tbody tr {
+            transition: background .15s;
             cursor: pointer;
         }
-        .cyber-table .person-row:hover {
-            background: rgba(0, 200, 255, 0.06);
+        .cyber-table tbody tr:hover {
+            background: var(--primary-soft);
         }
-        .cyber-table .person-row.highlight .name-cell {
-            color: var(--neon-blue);
+        .cyber-table tbody tr.highlight {
+            background: #ecfdf5;
+        }
+        .cyber-table tbody tr.highlight:hover {
+            background: #d1fae5;
+        }
+        .cyber-table .name-cell {
             font-weight: 700;
+            color: var(--primary);
         }
 
-        /* ============================================================
-               DRAWER
-               ============================================================ */
+        /* Empty + Load more */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .empty-state .icon { font-size: 48px; margin-bottom: 12px; opacity: .5; }
+        .empty-state p { font-size: 15px; max-width: 320px; margin: 0 auto; line-height: 1.7; }
+
+        .load-more-wrap {
+            text-align: center;
+            margin-top: 16px;
+            display: none;
+        }
+        .load-more-wrap.show { display: block; }
+
+        /* Drawer */
         .drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.60);
-            backdrop-filter: blur(4px);
-            z-index: 300;
+            background: rgba(15,23,42,.4);
+            z-index: 100;
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s ease;
+            visibility: hidden;
+            transition: all .25s;
+            backdrop-filter: blur(2px);
         }
         .drawer-overlay.active {
             opacity: 1;
-            pointer-events: auto;
+            visibility: visible;
         }
-
         .drawer {
             position: fixed;
             top: 0;
-            right: -440px;
+            left: 0;
             width: 100%;
-            max-width: 420px;
-            height: 100vh;
-            z-index: 310;
-            padding: 28px 24px;
+            max-width: 380px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 101;
+            transform: translateX(-100%);
+            transition: transform .3s cubic-bezier(.22,1,.36,1);
+            box-shadow: 8px 0 30px rgba(0,0,0,.1);
             display: flex;
             flex-direction: column;
-            border-left: 1px solid var(--border-glow);
-            background: rgba(6, 10, 20, 0.94);
-            backdrop-filter: blur(24px);
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .drawer.active {
-            right: 0;
-        }
-
+        .drawer.active { transform: translateX(0); }
         .drawer-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-bottom: 18px;
-            border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 22px;
         }
         .drawer-header h3 {
-            font-family: var(--font-title);
-            font-size: 20px;
-            color: var(--neon-blue);
+            font-size: 16px;
+            font-weight: 700;
         }
-        .drawer-header .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 22px;
+        .close-btn {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-soft);
             cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
         }
-
+        .close-btn:hover {
+            background: var(--danger-soft);
+            border-color: #fecaca;
+            color: var(--danger);
+        }
         .drawer-body {
             flex: 1;
             overflow-y: auto;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 14px;
         }
         .detail-field {
-            padding: 14px 16px;
-            background: rgba(0, 200, 255, 0.03);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
             display: flex;
-            align-items: center;
-            gap: 14px;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 12px 14px;
+            background: var(--bg-soft);
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
         }
         .detail-field .d-icon {
-            font-size: 20px;
-            color: var(--neon-blue);
+            font-size: 18px;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
         }
         .detail-field .d-label {
-            font-size: 10.5px;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 2px;
         }
         .detail-field .d-value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
+            color: var(--text);
+            word-break: break-word;
         }
 
-        /* ============================================================
-               RESPONSIVE
-               ============================================================ */
-        @media (max-width: 820px) {
-            .sidebar { transform: translateX(100%); width: 300px; }
-            .sidebar.active { transform: translateX(0); }
-            .sidebar-close { display: block; }
-            .main-wrap { margin-right: 0; width: 100%; }
-            .topbar-left .menu-toggle { display: block; }
-            .topbar-left .sys-tag { display: none; }
-            .search-filters { grid-template-columns: 1fr; }
-            .drawer { max-width: 100%; right: -100%; }
+        /* Activity log small */
+        .activity-log {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
         }
 
-        .hidden { display: none !important; }
+        /* Live clock */
+        .live-clock {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--mono);
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .main-wrap { padding: 12px; }
+            .stats-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .stat-card { padding: 14px 12px; }
+            .stat-card .stat-value { font-size: 20px; }
+            .topbar { padding: 10px 12px; }
+            .search-row { flex-direction: column; align-items: stretch; }
+            .filter-select, .limit-input { width: 100%; min-width: 0; }
+            .db-bar { flex-direction: column; align-items: stretch; }
+            .db-actions { justify-content: stretch; }
+            .db-actions .btn { flex: 1; }
+            .login-card { padding: 28px 22px; }
+            .drawer { max-width: 100%; }
+        }
+
+        /* Print */
+        @media print {
+            .topbar, .db-bar, .search-panel, .results-meta, .load-more-wrap, .drawer-overlay, .drawer { display: none !important; }
+            .family-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+        }
     </style>
 </head>
 <body>
 
     <!-- LOGIN SCREEN -->
     <div id="login-screen">
-        <div class="login-grid"></div>
-
-        <div class="login-card glass">
+        <div class="login-card">
             <div class="brand">
-                <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="32,3 58,17.5 58,46.5 32,61 6,46.5 6,17.5" fill="none" stroke="#00d4ff" stroke-width="2.5"/>
-                    <path d="M22 18v28M42 18v28M22 32h20" stroke="#00d4ff" stroke-width="4" fill="none" stroke-linecap="round"/>
-                </svg>
-                <h1>HUMAM <span>MATRIX</span></h1>
-                <div class="sub">SECURE RECORDS · v5.0</div>
+                <div class="logo-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h1>HUMAM <span>System</span></h1>
+                <div class="sub">نظام السجلات الذكية · v5.0</div>
             </div>
 
             <div id="loginError" class="login-error">
@@ -1091,13 +1061,13 @@ else if (typeof exports === 'object'){
                 <div class="form-extra">
                     <label>
                         <input type="checkbox" id="rememberMe" />
-                        <span>تذكر البيانات</span>
+                        <span>تذكرني</span>
                     </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block login-btn" id="loginBtn">
                     <span class="spinner"></span>
-                    <span class="btn-text">🚀 دخول</span>
+                    <span class="btn-text">دخول للنظام</span>
                 </button>
             </form>
         </div>
@@ -1106,203 +1076,123 @@ else if (typeof exports === 'object'){
     <!-- APP LAYOUT -->
     <div id="app-layout" class="hidden">
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar" id="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <div class="sidebar-brand">
-                        <svg class="logo-sm" viewBox="0 0 64 64">
-                            <polygon points="32,3 58,17.5 58,46.5 32,61 6,46.5 6,17.5" fill="none" stroke="#00d4ff" stroke-width="2.5"/>
-                            <path d="M22 18v28M42 18v28M22 32h20" stroke="#00d4ff" stroke-width="4" fill="none" stroke-linecap="round"/>
-                        </svg>
-                        <div class="brand-text">HUMAM <span>CYBER MATRIX</span></div>
-                    </div>
-                    <button class="sidebar-close" id="closeSidebar">✕</button>
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-brand">
+                <div class="topbar-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
                 </div>
-
-                <nav class="nav">
-                    <a class="nav-item active" data-section="dashboard"><span class="icon">📊</span> لوحة التحكم</a>
-                    <a class="nav-item" data-section="search"><span class="icon">🔍</span> محرك البحث</a>
-                    <a class="nav-item" data-section="families"><span class="icon">🏘️</span> العوائل</a>
-                    <a class="nav-item" data-section="people"><span class="icon">👥</span> الأشخاص</a>
-                    <a class="nav-item" data-section="statistics"><span class="icon">📈</span> الإحصائيات</a>
-                    <a class="nav-item" id="exportExcelBtn"><span class="icon">📤</span> تصدير Excel</a>
-                    <a class="nav-item" id="printReportBtn"><span class="icon">🖨️</span> طباعة</a>
-                    <a class="nav-item" data-section="settings"><span class="icon">⚙️</span> الإعدادات</a>
-                    <a class="nav-item" data-section="about"><span class="icon">ℹ️</span> عن النظام</a>
-                </nav>
+                <div class="topbar-title">
+                    HUMAM System
+                    <small>سجلات ذكية · v5.0</small>
+                </div>
             </div>
-
-            <div class="sidebar-footer">
-                <button class="btn btn-success btn-block" id="downloadZipBtn">📦 تنزيل المشروع ZIP</button>
-                <button class="btn btn-danger btn-block" id="logoutBtn">🚪 تسجيل الخروج</button>
+            <div class="topbar-actions">
+                <div class="live-clock">
+                    <div id="liveTime">--:--:--</div>
+                    <div id="liveDate">----</div>
+                </div>
+                <button class="icon-btn" id="exportExcelBtn" title="تصدير Excel">📊</button>
+                <button class="icon-btn" id="printReportBtn" title="طباعة">🖨️</button>
+                <button class="icon-btn" id="logoutBtn" title="خروج">🚪</button>
             </div>
-        </aside>
+        </header>
 
-        <!-- MAIN WRAP -->
         <div class="main-wrap">
 
-            <!-- TOPBAR -->
-            <header class="topbar glass">
-                <div class="topbar-left">
-                    <button class="menu-toggle" id="openSidebar">☰</button>
-                    <span class="sys-tag">⚡ SECURE v5.0</span>
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon blue">👥</div>
+                    <div class="stat-label">الأشخاص</div>
+                    <div class="stat-value" id="statPeople">0</div>
+                    <div class="stat-sub">إجمالي الأفراد</div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">👨‍👩‍👧</div>
+                    <div class="stat-label">العوائل</div>
+                    <div class="stat-value" id="statFamilies">0</div>
+                    <div class="stat-sub">عدد العوائل</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">🏛️</div>
+                    <div class="stat-label">المراكز</div>
+                    <div class="stat-value" id="statCenters">0</div>
+                    <div class="stat-sub">مراكز التسجيل</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">⚡</div>
+                    <div class="stat-label">سرعة البحث</div>
+                    <div class="stat-value" id="statSpeed">—</div>
+                    <div class="stat-sub">آخر عملية</div>
+                </div>
+            </div>
 
-                <div class="topbar-center">
-                    <div class="clock">
-                        <span id="liveTime">00:00:00</span>
-                        <span class="date" id="liveDate">2026-07-22</span>
+            <!-- DB Status -->
+            <div class="db-bar">
+                <div class="db-info">
+                    <span class="dot" id="dbDot"></span>
+                    <div>
+                        <div id="dbLabel">لم يتم تحميل أي قاعدة بيانات</div>
+                        <div class="activity-log" id="activityLog">قم بتحميل ملفات .sqlite أو .db للبدء</div>
+                        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;" id="dbLastSearch"></div>
                     </div>
                 </div>
-
-                <div class="topbar-right">
-                    <button class="btn btn-outline" id="downloadHtmlBtn" title="تحميل الصفحة HTML">
-                        <span>💾</span> <span>HTML</span>
-                    </button>
-                    <div class="op-badge">
-                        <span class="pulse"></span>
-                        <span>HUMAM</span>
-                    </div>
+                <div class="db-actions">
+                    <button class="btn btn-primary btn-sm" id="loadDbBtn">📂 تحميل قواعد البيانات</button>
+                    <button class="btn btn-outline btn-sm" id="downloadHtmlBtn">⬇️ حفظ HTML</button>
                 </div>
-            </header>
+            </div>
 
-            <!-- CONTENT -->
-            <main class="content">
-
-                <!-- SECTION: DASHBOARD -->
-                <section class="section active" id="section-dashboard">
-                    <div class="stats-grid" id="statsGrid">
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--neon-blue)">👥</div>
-                            <div class="stat-info"><h4>إجمالي الأشخاص</h4><div class="value" id="statPeople">0</div></div>
-                        </div>
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--neon-cyan)">🏘️</div>
-                            <div class="stat-info"><h4>إجمالي العوائل</h4><div class="value" id="statFamilies">0</div></div>
-                        </div>
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--neon-green)">🏛️</div>
-                            <div class="stat-info"><h4>المراكز المسجلة</h4><div class="value" id="statCenters">0</div></div>
-                        </div>
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--neon-orange)">⚡</div>
-                            <div class="stat-info"><h4>سرعة البحث</h4><div class="value" id="statSpeed">—</div></div>
-                        </div>
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--neon-purple)">🔎</div>
-                            <div class="stat-info"><h4>نتائج البحث</h4><div class="value" id="statResults">0</div></div>
-                        </div>
-                        <div class="stat-card glass">
-                            <div class="stat-icon" style="color:var(--text-secondary)">📦</div>
-                            <div class="stat-info"><h4>حجم البيانات</h4><div class="value" id="statSize">—</div></div>
-                        </div>
+            <!-- Search -->
+            <div class="search-panel">
+                <div class="search-row">
+                    <div class="search-input-wrap">
+                        <input type="text" id="qInput" placeholder="ابحث بالاسم أو الأب أو الجد أو رقم الهوية أو الهاتف..." />
+                        <button class="clear-btn" id="clearQuery">✕</button>
                     </div>
+                    <select class="filter-select" id="rcSelect">
+                        <option value="">جميع المراكز</option>
+                    </select>
+                    <select class="filter-select" id="sortSelect">
+                        <option value="name">ترتيب: الاسم</option>
+                        <option value="id_no">ترتيب: رقم الهوية</option>
+                        <option value="family">ترتيب: رقم العائلة</option>
+                    </select>
+                    <input type="number" class="limit-input" id="limitInput" value="40" min="10" max="200" title="عدد النتائج" />
+                </div>
+                <div class="history-tags" id="historyTags">
+                    <span class="label">عمليات سابقة:</span>
+                </div>
+            </div>
 
-                    <div class="db-status-bar glass">
-                        <span class="dot" id="dbDot"></span>
-                        <span class="label" id="dbLabel">لم يتم تحميل قاعدة بيانات</span>
-                        <span style="margin-right:auto;font-size:12px;color:var(--text-muted);" id="dbLastSearch">آخر بحث: —</span>
-                    </div>
+            <!-- Results meta -->
+            <div class="results-meta" id="resultsMeta">
+                <span>النتائج: <strong id="resultCount">0</strong> عائلة <span id="resultTime"></span></span>
+                <span id="statResults" style="display:none;">0</span>
+                <span id="statSize" style="display:none;">0</span>
+            </div>
 
-                    <div class="glass" style="padding:24px;">
-                        <h4 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:10px;">📋 نشاط النظام</h4>
-                        <p style="color:var(--text-secondary);font-size:13px;" id="activityLog">قاعدة البيانات جاهزة للتحميل ...</p>
-                    </div>
-                </section>
+            <!-- Results -->
+            <div class="results-container" id="resultsContainer"></div>
 
-                <!-- SECTION: SEARCH -->
-                <section class="section" id="section-search">
-                    <div class="search-panel glass">
-                        <div class="search-main">
-                            <input type="search" id="qInput" placeholder="ابحث بالاسم أو رقم القرعة / الهوية..." autocomplete="off" />
-                            <button class="clear-btn" id="clearQuery">✕</button>
-                            <span class="search-icon">🔍</span>
-                        </div>
+            <div class="empty-state" id="emptyState">
+                <div class="icon">🔍</div>
+                <p>استخدم البحث للوصول إلى بيانات أي شخص مسجل في القاعدة.<br>أو قم بتحميل قاعدة بيانات أولاً.</p>
+            </div>
 
-                        <div class="search-filters">
-                            <select id="rcSelect"><option value="">جميع المراكز</option></select>
-                            <select id="sortSelect">
-                                <option value="name">ترتيب حسب: الاسم</option>
-                                <option value="id_no">ترتيب حسب: رقم الهوية</option>
-                                <option value="family">ترتيب حسب: رقم العائلة</option>
-                            </select>
-                            <input type="number" id="limitInput" placeholder="حد النتائج (افتراضي 40)" min="1" max="200" />
-                        </div>
+            <div class="load-more-wrap" id="loadMoreWrap">
+                <button class="btn btn-outline" id="loadMoreBtn">تحميل المزيد</button>
+            </div>
 
-                        <div class="search-history" id="historyTags">
-                            <span class="label">⚡ عمليات بحث سريعة:</span>
-                        </div>
-                    </div>
-
-                    <div class="results-meta" id="resultsMeta" style="display:none;">
-                        <span>النتائج: <strong id="resultCount">0</strong> عائلة</span>
-                        <span id="resultTime" style="color:var(--text-muted);"></span>
-                    </div>
-
-                    <div id="resultsContainer"></div>
-
-                    <div style="display:flex;justify-content:center;margin:10px 0 28px;">
-                        <button class="btn btn-primary" id="loadMoreBtn" style="display:none;">تحميل المزيد +</button>
-                    </div>
-
-                    <div class="glass" id="emptyState" style="display:none;text-align:center;padding:60px 20px;">
-                        <div style="font-size:44px;opacity:0.4;">🔍</div>
-                        <p>لا توجد نتائج مطابقة لمحددات البحث الحالية</p>
-                    </div>
-                </section>
-
-                <!-- SECTION: OTHER SECTIONS -->
-                <section class="section" id="section-families">
-                    <div class="glass" style="padding:28px;">
-                        <h3 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:12px;">🏘️ جميع العوائل</h3>
-                        <p style="color:var(--text-secondary);">يمكنك استعراض جميع العوائل المسجلة من خلال محرك البحث أعلاه.</p>
-                    </div>
-                </section>
-
-                <section class="section" id="section-people">
-                    <div class="glass" style="padding:28px;">
-                        <h3 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:12px;">👥 جميع الأشخاص</h3>
-                        <p style="color:var(--text-secondary);">استخدم البحث للوصول إلى بيانات أي شخص مسجل في القاعدة.</p>
-                    </div>
-                </section>
-
-                <section class="section" id="section-statistics">
-                    <div class="glass" style="padding:28px;">
-                        <h3 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:16px;">📈 إحصائيات متقدمة</h3>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:14px;color:var(--text-secondary);">
-                            <div><strong style="color:var(--text-primary);">حالة قاعدة البيانات:</strong> <span id="statDbStatus">غير محملة</span></div>
-                            <div><strong style="color:var(--text-primary);">عدد السجلات الكلي:</strong> <span id="statTotalRecords">0</span></div>
-                            <div><strong style="color:var(--text-primary);">آخر تحديث:</strong> <span id="statLastUpdate">—</span></div>
-                            <div><strong style="color:var(--text-primary);">إصدار النظام:</strong> <span>HUMAM v5.0</span></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section" id="section-settings">
-                    <div class="glass" style="padding:28px;">
-                        <h3 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:16px;">⚙️ الإعدادات</h3>
-                        <div style="display:flex;flex-direction:column;gap:12px;">
-                            <label style="display:flex;align-items:center;gap:10px;color:var(--text-secondary);">
-                                <input type="checkbox" checked /> الوضع الليلي
-                            </label>
-                            <label style="display:flex;align-items:center;gap:10px;color:var(--text-secondary);">
-                                <input type="checkbox" checked /> تفعيل الرسوم المتحركة
-                            </label>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section" id="section-about">
-                    <div class="glass" style="padding:32px;">
-                        <h2 style="font-family:var(--font-title);color:var(--neon-blue);margin-bottom:12px;">ℹ️ نظام همام للسجلات الذكية v5.0</h2>
-                        <p style="color:var(--text-secondary);line-height:1.9;">
-                            نظام متطور لإدارة وبحث سجلات قواعد البيانات المحلية بسرعة فائقة باستخدام SQLite Wasm.
-                        </p>
-                    </div>
-                </section>
-
-            </main>
+            <!-- Hidden stats for JS compatibility -->
+            <span id="statDbStatus" style="display:none;">غير محملة</span>
+            <span id="statTotalRecords" style="display:none;">0</span>
+            <span id="statLastUpdate" style="display:none;">—</span>
         </div>
     </div>
 
@@ -1310,13 +1200,14 @@ else if (typeof exports === 'object'){
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <aside class="drawer" id="personDrawer">
         <div class="drawer-header">
-            <h3>🧑 تفاصيل القيد</h3>
+            <h3>تفاصيل القيد</h3>
             <button class="close-btn" id="closeDrawer">✕</button>
         </div>
         <div class="drawer-body" id="drawerBody"></div>
     </aside>
 
-    <!-- SCRIPT ENGINE -->
+
+<!-- SCRIPT ENGINE -->
     <script>
         let db = null, SQL = null, currentOffset = 0, mode = null;
         const DEFAULT_LIMIT = 40;
@@ -1326,11 +1217,11 @@ else if (typeof exports === 'object'){
         const $$ = s => document.querySelectorAll(s);
 
         const loginScreen = $('#login-screen'), loginForm = $('#loginForm'), loginUser = $('#loginUser'), loginPass = $('#loginPass'), loginError = $('#loginError'), loginBtn = $('#loginBtn'), togglePass = $('#togglePass'), rememberMe = $('#rememberMe');
-        const appLayout = $('#app-layout'), sidebar = $('#sidebar'), openSidebar = $('#openSidebar'), closeSidebar = $('#closeSidebar');
+        const appLayout = $('#app-layout');
         const statPeople = $('#statPeople'), statFamilies = $('#statFamilies'), statCenters = $('#statCenters'), statSpeed = $('#statSpeed'), statResults = $('#statResults'), statSize = $('#statSize'), dbDot = $('#dbDot'), dbLabel = $('#dbLabel'), dbLastSearch = $('#dbLastSearch'), activityLog = $('#activityLog');
         const qInput = $('#qInput'), clearQuery = $('#clearQuery'), rcSelect = $('#rcSelect'), sortSelect = $('#sortSelect'), limitInput = $('#limitInput'), historyTags = $('#historyTags'), resultsMeta = $('#resultsMeta'), resultCount = $('#resultCount'), resultTime = $('#resultTime'), resultsContainer = $('#resultsContainer'), loadMoreBtn = $('#loadMoreBtn'), emptyState = $('#emptyState');
         const personDrawer = $('#personDrawer'), drawerOverlay = $('#drawerOverlay'), drawerBody = $('#drawerBody'), closeDrawer = $('#closeDrawer');
-        const exportExcelBtn = $('#exportExcelBtn'), printReportBtn = $('#printReportBtn'), downloadHtmlBtn = $('#downloadHtmlBtn'), downloadZipBtn = $('#downloadZipBtn'), logoutBtn = $('#logoutBtn');
+        const exportExcelBtn = $('#exportExcelBtn'), printReportBtn = $('#printReportBtn'), downloadHtmlBtn = $('#downloadHtmlBtn'), logoutBtn = $('#logoutBtn');
 
         // Init Login
         togglePass.addEventListener('click', () => {
@@ -1342,35 +1233,38 @@ else if (typeof exports === 'object'){
             appLayout.classList.remove('hidden');
         }
 
+        // Restore remembered credentials
+        if (localStorage.getItem('humam_remember') === 'true') {
+            loginUser.value = localStorage.getItem('humam_user') || '';
+            loginPass.value = localStorage.getItem('humam_pass') || '';
+            rememberMe.checked = true;
+        }
+
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             if (loginUser.value.trim() === 'HUMAM' && loginPass.value.trim() === '1h2u3m') {
                 loginBtn.classList.add('loading');
+                if (rememberMe.checked) {
+                    localStorage.setItem('humam_remember', 'true');
+                    localStorage.setItem('humam_user', loginUser.value.trim());
+                    localStorage.setItem('humam_pass', loginPass.value.trim());
+                } else {
+                    localStorage.removeItem('humam_remember');
+                    localStorage.removeItem('humam_user');
+                    localStorage.removeItem('humam_pass');
+                }
                 setTimeout(() => {
                     loginBtn.classList.remove('loading');
                     sessionStorage.setItem('humam_auth', 'true');
                     loginScreen.classList.add('hidden');
                     appLayout.classList.remove('hidden');
-                }, 600);
+                }, 700);
             } else {
                 loginError.classList.add('show');
                 setTimeout(() => loginError.classList.remove('show'), 3000);
             }
         });
 
-        // Navigation
-        $$('.nav-item[data-section]').forEach(item => {
-            item.addEventListener('click', () => {
-                $$('.nav-item').forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                $$('.section').forEach(s => s.classList.remove('active'));
-                $(`#section-${item.dataset.section}`).classList.add('active');
-                if (window.innerWidth <= 820) sidebar.classList.remove('active');
-            });
-        });
-
-        openSidebar.addEventListener('click', () => sidebar.classList.add('active'));
-        closeSidebar.addEventListener('click', () => sidebar.classList.remove('active'));
         logoutBtn.addEventListener('click', () => { sessionStorage.removeItem('humam_auth'); location.reload(); });
 
         setInterval(() => {
@@ -1388,9 +1282,7 @@ else if (typeof exports === 'object'){
         const fileInput = document.createElement('input');
         fileInput.type = 'file'; fileInput.accept = '.sqlite,.db,.sqlite3'; fileInput.multiple = true; fileInput.style.display = 'none';
         document.body.appendChild(fileInput);
-        const loadDbBtn = document.createElement('button');
-        loadDbBtn.className = 'btn btn-primary'; loadDbBtn.textContent = '📂 تحميل قواعد البيانات (يمكن تحديد ملفين معاً)'; loadDbBtn.style.marginRight = '12px';
-        $('.db-status-bar').appendChild(loadDbBtn);
+        const loadDbBtn = document.getElementById('loadDbBtn');
         loadDbBtn.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', e => { loadFiles([...e.target.files]); fileInput.value = ''; });
         ['dragover', 'drop'].forEach(ev => window.addEventListener(ev, e => {
@@ -1420,6 +1312,14 @@ else if (typeof exports === 'object'){
                     if (!cols.length) { d.close(); activityLog.textContent = `⚠️ ${file.name}: لا يحتوي جدول person`; continue; }
                     const rcMap = {};
                     try { d.exec("SELECT rc_no, rc_name FROM rc")[0].values.forEach(r => rcMap[String(r[0])] = (r[1] || '').trim()); } catch (e) {}
+                    try {
+                        const hasIdx = one(d, "PRAGMA index_list(person)").some(r => { try { const c = one(d, `PRAGMA index_info(${JSON.stringify(r[1])})`); return c.length && c[0][2] === 'rc_no'; } catch (e) { return false; } });
+                        if (!hasIdx && cols.includes('rc_no') && cols.includes('fam_no')) {
+                            dbLabel.textContent = `تجهيز فهرس البحث لـ ${file.name} ...`;
+                            await new Promise(r => setTimeout(r, 30));
+                            d.exec("CREATE INDEX IF NOT EXISTS idx_humam_fam ON person(rc_no, fam_no)");
+                        }
+                    } catch (e) { console.warn('index skipped', e); }
                     const key = file.name;
                     const i = dbs.findIndex(x => x.key === key);
                     if (i >= 0) { try { dbs[i].db.close(); } catch (e) {} dbs.splice(i, 1); }
@@ -1478,7 +1378,8 @@ else if (typeof exports === 'object'){
             const L = t => '%' + escapeLike(t) + '%';
             const w = [], p = [];
             if (tokens.length === 1) {
-                const fields = ['name', 'father', 'grandfather', 'id_no', 'fam_no', 'phone', 'profession', 'reg_no'].filter(c => x.cols.includes(c));
+                const isNum = /^[0-9٠-٩+\-]+$/.test(tokens[0]);
+                const fields = (isNum ? ['id_no', 'fam_no', 'phone', 'reg_no'] : ['name', 'father', 'grandfather', 'profession']).filter(c => x.cols.includes(c));
                 w.push('(' + fields.map(c => `p.${c} LIKE ? ESCAPE '\\'`).join(' OR ') + ')'); fields.forEach(() => p.push(L(tokens[0])));
             } else if (tokens.length >= 2) {
                 ['name', 'father', 'grandfather'].forEach((c, i) => { if (tokens[i]) { w.push(`p.${c} LIKE ? ESCAPE '\\'`); p.push(L(tokens[i])); } });
@@ -1497,20 +1398,23 @@ else if (typeof exports === 'object'){
         let searchTimer = null; const offsets = {};
         function runSearch(reset = true) {
             if (!dbs.length) return;
-            if (reset) { dbs.forEach(x => offsets[x.key] = 0); resultsContainer.innerHTML = ''; memberStore = []; emptyState.style.display = 'none'; loadMoreBtn.style.display = 'none'; }
+            if (reset) { dbs.forEach(x => offsets[x.key] = 0); resultsContainer.innerHTML = ''; memberStore = []; emptyState.style.display = 'none'; loadMoreBtn.style.display = 'none'; document.getElementById('loadMoreWrap').classList.remove('show'); }
             const t0 = performance.now();
             const limit = parseInt(limitInput.value) || DEFAULT_LIMIT;
             let shown = 0, more = false;
             for (const x of dbs) {
                 const keys = findFamilyKeys(x, limit, offsets[x.key]);
-                keys.forEach(([rc, fam]) => resultsContainer.appendChild(renderFamilyCard(x, rc, fam, currentQueryTokens)));
+                const frag = document.createDocumentFragment();
+                keys.forEach(([rc, fam]) => frag.appendChild(renderFamilyCard(x, rc, fam, currentQueryTokens)));
+                resultsContainer.appendChild(frag);
                 offsets[x.key] += keys.length; shown += keys.length; if (keys.length === limit) more = true;
             }
+            if (reset) lastSearchMs = Math.round(performance.now() - t0);
             if (reset && !shown) { emptyState.style.display = 'block'; resultsMeta.style.display = 'none'; return; }
-            const total = resultsContainer.children.length, ms = Math.round(performance.now() - t0);
+            const total = resultsContainer.children.length, ms = Math.round(performance.now() - t0); lastSearchMs = ms;
             resultsMeta.style.display = 'flex';
             resultsMeta.querySelector('span').innerHTML = `النتائج: <strong id="resultCount">${total}</strong> عائلة <span id="resultTime">(${ms} ms)</span>`;
-            loadMoreBtn.style.display = more ? 'block' : 'none';
+            loadMoreBtn.style.display = more ? 'block' : 'none'; document.getElementById('loadMoreWrap').classList.toggle('show', more);
             statResults.textContent = total; dbLastSearch.textContent = `آخر بحث: "${qInput.value}" (${ms} ms)`;
             const text = qInput.value.trim();
             if (reset && text && !searchHistory.includes(text)) { searchHistory.unshift(text); if (searchHistory.length > 6) searchHistory.pop(); renderHistory(); }
@@ -1525,7 +1429,7 @@ else if (typeof exports === 'object'){
         }
 
         function renderFamilyCard(x, rc_no, fam_no, tokens) {
-            const fcols = (() => { try { return one(x.db, "PRAGMA table_info(family)").map(r => r[1]); } catch (e) { return []; } })();
+            const fcols = x.fcols || (x.fcols = (() => { try { return one(x.db, "PRAGMA table_info(family)").map(r => r[1]); } catch (e) { return []; } })());
             const fr = one(x.db, "SELECT * FROM family WHERE rc_no=? AND fam_no=?", [rc_no, fam_no])[0] || [];
             const fam = {}; fcols.forEach((c, i) => fam[c] = fr[i]);
             const rcName = x.rcMap[String(rc_no)] || rc_no;
@@ -1581,16 +1485,14 @@ else if (typeof exports === 'object'){
             const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'HUMAM_System.html'; a.click();
         });
 
-        downloadZipBtn.addEventListener('click', async () => {
-            if (typeof JSZip === 'undefined') return alert('مكتبة ZIP قيد التحميل...');
-            const zip = new JSZip();
-            zip.file('index.html', '<!DOCTYPE html>\\n' + document.documentElement.outerHTML);
-            zip.file('README.txt', 'نظام همام الإلكتروني v5.0\\nالمستخدم: HUMAM\\nكلمة المرور: 1h2u3m');
-            const blob = await zip.generateAsync({ type: 'blob' });
-            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'HUMAM_Cyber_Project.zip'; a.click();
+        let lastSearchMs = 0;
+        qInput.addEventListener('input', () => {
+            clearTimeout(searchTimer);
+            const q = qInput.value.trim();
+            if (q.length === 1) return;   // حرف واحد: لا تبحث (يسبب تقطيع)
+            const wait = Math.min(1200, Math.max(500, lastSearchMs * 1.5));
+            searchTimer = setTimeout(() => requestAnimationFrame(() => setTimeout(() => runSearch(true), 0)), wait);
         });
-
-        qInput.addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(() => runSearch(true), 300); });
         clearQuery.addEventListener('click', () => { qInput.value = ''; runSearch(true); });
         rcSelect.addEventListener('change', () => runSearch(true));
         sortSelect.addEventListener('change', () => runSearch(true));
